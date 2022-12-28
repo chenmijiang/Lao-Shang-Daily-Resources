@@ -1,0 +1,28 @@
+{
+  "name": "lao-shang-daily-resources",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "node ./src/scaner.js && node ./src/index.js",
+    "scaner": "node ./src/scaner.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenmijiang/Lao-Shang-Daily-Resources.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chenmijiang/Lao-Shang-Daily-Resources/issues"
+  },
+  "homepage": "https://github.com/chenmijiang/Lao-Shang-Daily-Resources#readme",
+  "dependencies": {
+    "jsonfile": "^6.1.0",
+    "markdown-it": "^13.0.1",
+    "marked": "^4.2.5",
+    "moment": "^2.29.4"
+  }
+}

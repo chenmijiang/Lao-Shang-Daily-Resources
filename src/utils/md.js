@@ -10,7 +10,7 @@ module.exports.writeMD = function (docsMap, mdPath) {
   for (const key of keys) {
     content.push(`## ${key}`);
     for (const value of docsMap[key]) {
-      content.push(`- [${value}](./${key}/${value})`);
+      content.push(`- [${value}](./${key}/${value.replaceAll(' ','%20')})`);
     }
   }
 

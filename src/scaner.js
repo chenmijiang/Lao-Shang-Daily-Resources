@@ -1,15 +1,15 @@
 // 扫描 docs 文件夹 ，构建 map.json 文件
-const fs = require('fs');
 const path = require('path');
 const jsonfile = require('jsonfile');
 
-const { ReadDir, isDirectory } = require('./utils/file');
+const { ReadDir } = require('./utils/file');
 
 // 1. 扫描 docs 文件夹，获取相应的 日期 文件描述符
 ReadDir(path.resolve(__dirname, '..', 'docs')).then(async (dirs) => {
   let map = {};
   for (const dir of dirs) {
-    if (! await isDirectory(path.resolve(__dirname, '..', 'docs', dir))) break;
+    // 排除以下文件(夹)
+    if ('.git' === dir || 'readme.md' === dir) continue;
     map[dir] = [];
     // 2. 扫描 日期 文件描述符下面的 文件名
     try {

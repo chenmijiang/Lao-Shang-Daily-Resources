@@ -30,7 +30,7 @@ ReadDir(uploadPath).then(async (files) => {
     if (err) console.log('写入失败');
   })
   // 5. 修改 reamde 文件 信息
-  writeMD(docsMap, path.join(__dirname, '..', 'docs', 'reamde.md'));
+  writeMD(docsMap, path.join(__dirname, '..', 'docs', 'readme.md'));
   // 6. 执行脚本文件 上传到仓库中
 
 });

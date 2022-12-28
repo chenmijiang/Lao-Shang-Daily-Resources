@@ -3,6 +3,7 @@ const path = require('path');
 const jsonfile = require('jsonfile');
 
 const { ReadDir } = require('./utils/file');
+const { writeMD } = require('./utils/md');
 
 // 1. 扫描 docs 文件夹，获取相应的 日期 文件描述符
 ReadDir(path.resolve(__dirname, '..', 'docs')).then(async (dirs) => {
@@ -28,4 +29,5 @@ ReadDir(path.resolve(__dirname, '..', 'docs')).then(async (dirs) => {
   jsonfile.writeFile(mapPath, map, { spaces: 2 }, (err) => {
     if (err) console.log('写入失败');
   })
+  writeMD(map, path.join(__dirname, '..', 'docs', 'readme.md'));
 })

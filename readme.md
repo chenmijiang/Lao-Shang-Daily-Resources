@@ -2,11 +2,11 @@
 
 ## 结构说明
 
-├─docs
-├─node_modules
-├─src
-│  └─utils
-└─upload
+├─docs  
+├─node_modules  
+├─src  
+│  └─utils  
+└─upload  
 
 docs 存放资料，上传到 main 分支上，缺失可以远程下载到这里
 

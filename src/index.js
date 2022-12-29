@@ -3,7 +3,7 @@ const path = require('path');
 const jsonfile = require('jsonfile');
 
 const { getCurrentTime } = require('./utils/time');
-const { ReadDir, createDirtory, moveFile } = require('./utils/file');
+const { ReadDir, createDirtory, moveFile, isFileExisted } = require('./utils/file');
 const { writeMD } = require('./utils/md');
 
 const uploadPath = path.resolve(__dirname, '..', 'upload');
@@ -13,14 +13,18 @@ ReadDir(uploadPath).then(async (files) => {
   if (files.length === 0) {
     return;
   }
-  // 2. 检查 是否存在当日命名的文件夹，不存在就创建
-  let timeDir = getCurrentTime();
-  let timePath = path.join(__dirname, '..', 'docs', timeDir);
+  // 指定 时间 或 当日的文件夹
+  let timeDir = process.argv.slice(2)[0] || getCurrentTime();
+  let yearDir = timeDir.slice(0, 4);
+  let yearPath = path.join(__dirname, '..', 'docs', yearDir);
+  let timePath = path.join(yearPath, timeDir);
   // map映射
   let mapPath = path.join(__dirname, '..', 'map.json');
   let docsMap = await jsonfile.readFile(mapPath);
 
   try {
+    // 2. 检查 是否存在当日命名的文件夹，不存在就创建
+    !(await isFileExisted(yearPath)) && (await createDirtory(yearPath));
     !docsMap[timeDir] && (docsMap[timeDir] = [], createDirtory(timePath));
   } catch (error) {
     console.log(error);

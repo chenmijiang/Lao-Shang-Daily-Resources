@@ -24,8 +24,8 @@ ReadDir(uploadPath).then(async (files) => {
 
   try {
     // 2. 检查 是否存在当日命名的文件夹，不存在就创建
-    !docsMap[yearDir] && (await createDirtory(yearPath));
-    !(docsMap[yearDir][timeDir]) && (docsMap[yearDir][timeDir] = [], createDirtory(timePath));
+    !docsMap[yearDir] && (docsMap[yearDir] = {}, await createDirtory(yearPath));
+    !(docsMap[yearDir][timeDir]) && (docsMap[yearDir][timeDir] = [],await createDirtory(timePath));
   } catch (error) {
     console.log(error);
   }

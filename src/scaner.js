@@ -29,5 +29,6 @@ ReadDir(path.resolve(__dirname, '..', 'docs')).then(async (dirs) => {
   jsonfile.writeFile(mapPath, map, { spaces: 2 }, (err) => {
     if (err) console.log('写入失败');
   })
+  //  5. 修改 reamde 文件 信息
   writeMD(map, path.join(__dirname, '..', 'docs', 'readme.md'));
 })

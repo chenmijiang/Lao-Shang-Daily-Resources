@@ -16,10 +16,15 @@ ReadDir(uploadPath).then(async (files) => {
   // 2. 检查 是否存在当日命名的文件夹，不存在就创建
   let timeDir = getCurrentTime();
   let timePath = path.join(__dirname, '..', 'docs', timeDir);
+  // map映射
   let mapPath = path.join(__dirname, '..', 'map.json');
   let docsMap = await jsonfile.readFile(mapPath);
 
-  !docsMap[timeDir] && (docsMap[timeDir] = [], createDirtory(timePath));
+  try {
+    !docsMap[timeDir] && (docsMap[timeDir] = [], createDirtory(timePath));
+  } catch (error) {
+    console.log(error);
+  }
   // 3. 将 upload 中的文件 移动到 日期文件夹下
   for (const file of files) {
     !docsMap[timeDir].includes(file) && docsMap[timeDir].push(file);
@@ -31,6 +36,4 @@ ReadDir(uploadPath).then(async (files) => {
   })
   // 5. 修改 reamde 文件 信息
   writeMD(docsMap, path.join(__dirname, '..', 'docs', 'readme.md'));
-  // 6. 执行脚本文件 上传到仓库中
-
 });

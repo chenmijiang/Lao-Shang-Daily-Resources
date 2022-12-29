@@ -3,7 +3,7 @@ const path = require('path');
 const jsonfile = require('jsonfile');
 
 const { getCurrentTime } = require('./utils/time');
-const { ReadDir, createDirtory, moveFile, isFileExisted } = require('./utils/file');
+const { ReadDir, createDirtory, moveFile } = require('./utils/file');
 const { writeMD } = require('./utils/md');
 
 const uploadPath = path.resolve(__dirname, '..', 'upload');
@@ -24,14 +24,14 @@ ReadDir(uploadPath).then(async (files) => {
 
   try {
     // 2. 检查 是否存在当日命名的文件夹，不存在就创建
-    !(await isFileExisted(yearPath)) && (await createDirtory(yearPath));
-    !docsMap[timeDir] && (docsMap[timeDir] = [], createDirtory(timePath));
+    !docsMap[yearDir] && (await createDirtory(yearPath));
+    !(docsMap[yearDir][timeDir]) && (docsMap[yearDir][timeDir] = [], createDirtory(timePath));
   } catch (error) {
     console.log(error);
   }
   // 3. 将 upload 中的文件 移动到 日期文件夹下
   for (const file of files) {
-    !docsMap[timeDir].includes(file) && docsMap[timeDir].push(file);
+    !(docsMap[yearDir][timeDir]).includes(file) && (docsMap[yearDir][timeDir]).push(file);
     await moveFile(path.resolve(uploadPath, file), path.join(timePath, file));
   }
   // 4. 更新 json 文件

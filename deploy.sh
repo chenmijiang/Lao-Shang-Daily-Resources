@@ -1,9 +1,15 @@
 #!/usr/bin/env sh
 set -e
-yarn build
+
+if [ $1 ] && [[ $1 =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]] ; then
+  yarn build $1
+else
+  yarn build
+fi
+
 cd docs
 
-if [ "init" = $1 ] ; then
+if ([ $1 ] && [ "init" = $1 ]) || ([ $2 ] && [ "init" = $2 ]) ; then
   rm -rf .git
   git init
   git add -A

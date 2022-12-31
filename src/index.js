@@ -4,7 +4,7 @@ const jsonfile = require('jsonfile');
 
 const { getCurrentTime } = require('./utils/time');
 const { ReadDir, createDirtory, moveFile } = require('./utils/file');
-const { writeMD } = require('./utils/md');
+const { contentToMD, contentToHTML } = require('./utils/translate');
 
 const uploadPath = path.resolve(__dirname, '..', 'upload');
 
@@ -25,7 +25,7 @@ ReadDir(uploadPath).then(async (files) => {
   try {
     // 2. 检查 是否存在当日命名的文件夹，不存在就创建
     !docsMap[yearDir] && (docsMap[yearDir] = {}, await createDirtory(yearPath));
-    !(docsMap[yearDir][timeDir]) && (docsMap[yearDir][timeDir] = [],await createDirtory(timePath));
+    !(docsMap[yearDir][timeDir]) && (docsMap[yearDir][timeDir] = [], await createDirtory(timePath));
   } catch (error) {
     console.log(error);
   }
@@ -39,5 +39,6 @@ ReadDir(uploadPath).then(async (files) => {
     if (err) console.log('写入失败');
   })
   // 5. 修改 reamde 文件 信息
-  writeMD(docsMap, path.join(__dirname, '..', 'docs', 'readme.md'));
+  contentToMD(docsMap, path.join(__dirname, '..', 'docs'));
+  contentToHTML(docsMap, path.join(__dirname, '..', 'docs'));
 });

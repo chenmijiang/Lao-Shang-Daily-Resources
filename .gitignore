@@ -3,3 +3,5 @@ docs
 map.json
 
 node_modules
+
+yarn.lock

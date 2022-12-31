@@ -3,7 +3,7 @@ const path = require('path');
 const jsonfile = require('jsonfile');
 
 const { ReadDir } = require('./utils/file');
-const { writeMD } = require('./utils/md');
+const { contentToMD, contentToHTML } = require('./utils/translate');
 
 const docsPath = path.resolve(__dirname, '..', 'docs');
 const mapPath = path.join(__dirname, '..', 'map.json');
@@ -13,7 +13,7 @@ ReadDir(docsPath).then(async (years) => {
   let map = {};
   for (const year of years) {
     // 排除以下文件(夹)
-    if ('.git' === year || 'readme.md' === year) continue;
+    if ('.git' === year || 'index.html' === year || 'readme.md' === year) continue;
     map[year] = {};
     // 1. 扫描 year 文件夹，获取相应的 日期 文件描述符
     try {
@@ -41,5 +41,6 @@ ReadDir(docsPath).then(async (years) => {
     if (err) console.log('写入失败');
   })
   //  5. 修改 reamde 文件 信息
-  writeMD(map, path.join(docsPath, 'readme.md'));
+  contentToMD(map, docsPath);
+  contentToHTML(map,docsPath);
 })

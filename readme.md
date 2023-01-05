@@ -1,5 +1,19 @@
 # 老尚每日资料分享
 
+## 2023-01-05
+
+- [React Router V6.4 （React Router 组件-钩子函数篇.pdf](./2023/2023-01-05/React%20Router%20V6.4%20（React%20Router%20组件-钩子函数篇.pdf)
+
+- [React 中是如何实现状态更新调度的？.pdf](./2023/2023-01-05/React%20中是如何实现状态更新调度的？.pdf)
+
+- [React中的useRef.pdf](./2023/2023-01-05/React中的useRef.pdf)
+
+- [Vue对比 Vue 和 JSX_TSX 写法.pdf](./2023/2023-01-05/Vue对比%20Vue%20和%20JSX_TSX%20写法.pdf)
+
+- [【React学习】React更新渲染原理.pdf](./2023/2023-01-05/【React学习】React更新渲染原理.pdf)
+
+- [用 Mobx 实现 React 应用的状态管理.pdf](./2023/2023-01-05/用%20Mobx%20实现%20React%20应用的状态管理.pdf)
+
 ## 2023-01-04
 
 - [className 还能这么用，你学会了吗.pdf](./2023/2023-01-04/className%20还能这么用，你学会了吗.pdf)
@@ -206,7 +220,7 @@
 
 - [高频react面试题自检.pdf](./2022/2022-12-22/高频react面试题自检.pdf)
 
-## 2022-12-21
+<details><summary>2022-12-21</summary>
 
 - [web前端经典react面试题.pdf](./2022/2022-12-21/web前端经典react面试题.pdf)
 
@@ -229,6 +243,8 @@
 - [社招前端一面必会react面试题集锦.pdf](./2022/2022-12-21/社招前端一面必会react面试题集锦.pdf)
 
 - [高级前端一面必会react面试题.pdf](./2022/2022-12-21/高级前端一面必会react面试题.pdf)
+
+</details>
 
 <details><summary>2022-12-20</summary>
 
